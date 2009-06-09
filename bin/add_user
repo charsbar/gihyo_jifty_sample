@@ -1,0 +1,25 @@
+#!perl
+
+use strict;
+use warnings;
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+
+use Jifty;
+
+Jifty->new;
+
+foreach my $user_id (@ARGV) {
+  my $record = MyApp::Model::User->new(
+    current_user => MyApp::CurrentUser->superuser
+  );
+
+  $record->create(
+    name            => $user_id,
+    password        => 'password',
+    email           => $user_id.'@localhost',
+    email_confirmed => 1,
+  );
+
+  Jifty->log->info("added user: $user_id");
+}
