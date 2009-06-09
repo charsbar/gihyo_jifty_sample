@@ -1,42 +1,54 @@
 use strict;
 use warnings;
 
-=head1 NAME
-
-MyApp::Action::CreateEntry
-
-=cut
-
 package MyApp::Action::CreateEntry;
 use base qw/MyApp::Action MyApp::Action::Record::Create/;
 
 use Jifty::Param::Schema;
 use Jifty::Action schema {
 
+  param body =>
+    label is '',
+    type is 'text',
+    display_length is 40,
+    max_length is 255,
+    sticky is 0;
+
+  param epoch =>
+    type is 'hidden',
+    sticky is 0,
+    default is defer { time() },
+
 };
 
-=head2 take_action
-
-=cut
+sub moniker { 'create_entry' }
+sub sticky_on_failure { 0 }
+sub sticky_on_success { 0 }
 
 sub take_action {
-    my $self = shift;
-    
-    # Custom action code
-    
-    $self->report_success if not $self->result->failure;
-    
-    return 1;
+  my $self = shift;
+
+  my $body = $self->argument_value('body');
+
+  return 1 unless defined $body && $body ne '';
+
+  my $entry = MyApp::Model::Entry->new;
+
+  $entry->create(
+    body    => $body,
+    epoch   => time,
+    user_id => $self->current_user->id,
+  );
+
+  Jifty->web->next_page("/home");
+
+  $self->report_success if not $self->result->failure;
+  return 1;
 }
-
-=head2 report_success
-
-=cut
 
 sub report_success {
     my $self = shift;
-    # Your success message here
-    $self->result->message('Success');
+    $self->result->message('Tweeted');
 }
 
 1;
