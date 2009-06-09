@@ -1,6 +1,6 @@
 ---
 framework:
-  AdminMode: 1
+  AdminMode: 0
   LogLevel: DEBUG
   Plugins:
     - LetMe: {}
