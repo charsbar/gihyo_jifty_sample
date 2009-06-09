@@ -2,6 +2,8 @@
 framework:
   AdminMode: 0
   LogLevel: DEBUG
+  Database:
+    Version: 0.0.2
   Plugins:
     - LetMe: {}
     - User: {}
