@@ -21,5 +21,7 @@ use MyApp::Record schema {
 
 # Your model-specific methods go here.
 
+sub since { '0.0.2' }
+
 1;
 
