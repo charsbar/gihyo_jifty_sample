@@ -1,0 +1,10 @@
+---
+framework:
+  AdminMode: 1
+  LogLevel: DEBUG
+  Plugins:
+    - LetMe: {}
+    - User: {}
+    - Authentication::Password:
+        login_by: username
+ #       login_by: email
