@@ -24,5 +24,15 @@ use MyApp::Record schema {
 
 sub since { '0.0.2' }
 
+sub current_user_can {
+  my ($self, $right, %args) = @_;
+
+  return 1 if $right eq 'read';
+  return 1 if $args{user_id} && $self->current_user->id == $args{user_id};
+  return 1 if $self->user_id && $self->current_user->id == $self->user_id;
+
+  return $self->SUPER::current_user_can($right, %args);
+}
+
 1;
 
