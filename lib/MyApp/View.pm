@@ -64,7 +64,7 @@ private template 'form' => sub {
     moniker => 'create_entry',
   );
 
-  div { attr { class => 'Form' };
+  div { attr { class => 'Form' }
     Jifty->web->form->start(submit_to => "/user/$name/post");
     div {
       render_param( $action => 'body', focus => 1 );
