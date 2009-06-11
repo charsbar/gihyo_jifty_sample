@@ -14,11 +14,6 @@ use Jifty::Action schema {
     max_length is 255,
     sticky is 0;
 
-  param epoch =>
-    type is 'hidden',
-    sticky is 0,
-    default is defer { time() },
-
 };
 
 sub moniker { 'create_entry' }
