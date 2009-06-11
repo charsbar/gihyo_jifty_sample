@@ -43,8 +43,8 @@ under 'user/*' => [
     my $user = get('user');
 
     my $entry = MyApp::Model::Entry->load_by_cols(
-      user_id => $user->id,
-      epoch   => $epoch,
+      user  => $user->id,
+      epoch => $epoch,
     );
 
     unless ($entry) {

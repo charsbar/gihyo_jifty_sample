@@ -9,7 +9,7 @@ use MyApp::Record schema {
   column body =>
     type is 'text';
 
-  column user_id =>
+  column user =>
     type is 'integer',
     refers_to MyApp::Model::User;
 
@@ -27,8 +27,8 @@ sub current_user_can {
   my ($self, $right, %args) = @_;
 
   return 1 if $right eq 'read';
-  return 1 if $args{user_id} && $self->current_user->id == $args{user_id};
-  return 1 if $self->user_id && $self->current_user->id == $self->user_id;
+  return 1 if $args{user} && $self->current_user->id == $args{user};
+  return 1 if $self->user && $self->current_user->id == $self->user;
 
   return $self->SUPER::current_user_can($right, %args);
 }
