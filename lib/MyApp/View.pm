@@ -17,9 +17,7 @@ template 'list' => page {
     h1 { "Tweets by $name..." };
   }
 
-  my $entries = MyApp::Model::EntryCollection->new(
-    current_user => Jifty->web->current_user
-  );
+  my $entries = MyApp::Model::EntryCollection->new;
 
   $entries->order_by( column => 'epoch', order => 'DESC' );
   $entries->rows_per_page(15);
