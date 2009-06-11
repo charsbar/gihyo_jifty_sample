@@ -20,6 +20,7 @@ template 'list' => page {
   my $entries = MyApp::Model::EntryCollection->new;
 
   $entries->order_by( column => 'epoch', order => 'DESC' );
+  $entries->prefetch( name => 'user' );
   $entries->rows_per_page(15);
   $entries->limit( column => 'user', value => $user->id );
 
