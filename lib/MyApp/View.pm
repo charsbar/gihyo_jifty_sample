@@ -35,7 +35,7 @@ template 'entry' => page {
   my $entry = get('entry');
   h1 { "Tweet by " . $user->name }
 
-  show('_entry', $entry);
+  show('_entry' => $entry);
 };
 
 private template '_entry' => sub {
