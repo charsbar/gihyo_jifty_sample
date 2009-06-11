@@ -30,9 +30,9 @@ sub take_action {
   my $entry = MyApp::Model::Entry->new;
 
   $entry->create(
-    body  => $body,
-    epoch => time,
-    user  => $self->current_user->id,
+    body    => $body,
+    epoch   => time,
+    user_id => $self->current_user->id,
   );
 
   Jifty->web->next_page("/home");

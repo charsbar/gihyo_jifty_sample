@@ -22,7 +22,7 @@ template 'list' => page {
   $entries->order_by( column => 'epoch', order => 'DESC' );
   $entries->prefetch( name => 'user' );
   $entries->rows_per_page(15);
-  $entries->limit( column => 'user', value => $user->id );
+  $entries->limit( column => 'user_id', value => $user->id );
 
   while (my $entry = $entries->next) {
     show('_entry' => $entry);
