@@ -15,8 +15,7 @@ use MyApp::Record schema {
 
   column epoch =>
     type is 'integer',
-    default is defer { time() },
-    is mandatory;
+    default is defer { time() };
 
 };
 
